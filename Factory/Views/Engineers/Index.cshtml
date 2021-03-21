@@ -1,0 +1,23 @@
+@{
+  Layout = "_Layout";
+}
+@model List<Factory.Models.Engineer>
+@using Factory.Models
+
+<h1> Engineers View </h1>
+<h3> Current Available Engineer(s): @Model.Count</h3>
+@if(Model.Count == 0)
+{
+  <h5> No Available Engineer(s) </h5>
+}
+else
+{
+  <ul>
+    @foreach (Engineer engineer in Model)
+    {
+      <li> @engineer.Name </li>
+    }
+  </ul>
+}
+
+<p>@Html.ActionLink("Go Back Home", "Index", "Home")</p>
