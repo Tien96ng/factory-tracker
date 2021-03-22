@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+@model Factory.Models.Engineer
+@using Factory.Models
+
+<h1> Add a Machine License </h1>
+<h4> Adding new License for @Html.DisplayFor(model => model.Name) </h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.EngineerId)
+
+  @Html.Label("Select Machine")
+  @Html.DropDownList("MachineId")
+
+  <input type="submit" value="Add" />
+}
+
+<p> @Html.ActionLink($"Back - Engineer: {@Model.Name}", "Details", new { engineerId = Model.EngineerId })</p>
+<p> @Html.ActionLink("Back - Show all Engineers", "Index")</p>
