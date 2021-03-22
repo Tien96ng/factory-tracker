@@ -45,22 +45,20 @@ namespace Factory.Migrations
                     b.Property<int>("MachineId")
                         .HasColumnType("int");
 
-                    b.Property<string>("MachineId1")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
                     b.HasKey("EngineerMachineId");
 
                     b.HasIndex("EngineerId");
 
-                    b.HasIndex("MachineId1");
+                    b.HasIndex("MachineId");
 
                     b.ToTable("EngineerMachine");
                 });
 
             modelBuilder.Entity("Factory.Models.Machine", b =>
                 {
-                    b.Property<string>("MachineId")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+                    b.Property<int>("MachineId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -83,7 +81,9 @@ namespace Factory.Migrations
 
                     b.HasOne("Factory.Models.Machine", "Machine")
                         .WithMany("JoinEntities")
-                        .HasForeignKey("MachineId1");
+                        .HasForeignKey("MachineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Engineer");
 

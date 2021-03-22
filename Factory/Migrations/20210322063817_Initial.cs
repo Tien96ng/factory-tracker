@@ -25,7 +25,8 @@ namespace Factory.Migrations
                 name: "Machines",
                 columns: table => new
                 {
-                    MachineId = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: false),
+                    MachineId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
                     Description = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true)
                 },
@@ -41,8 +42,7 @@ namespace Factory.Migrations
                     EngineerMachineId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     EngineerId = table.Column<int>(type: "int", nullable: false),
-                    MachineId = table.Column<int>(type: "int", nullable: false),
-                    MachineId1 = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: true)
+                    MachineId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -54,11 +54,11 @@ namespace Factory.Migrations
                         principalColumn: "EngineerId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_EngineerMachine_Machines_MachineId1",
-                        column: x => x.MachineId1,
+                        name: "FK_EngineerMachine_Machines_MachineId",
+                        column: x => x.MachineId,
                         principalTable: "Machines",
                         principalColumn: "MachineId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -67,9 +67,9 @@ namespace Factory.Migrations
                 column: "EngineerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EngineerMachine_MachineId1",
+                name: "IX_EngineerMachine_MachineId",
                 table: "EngineerMachine",
-                column: "MachineId1");
+                column: "MachineId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

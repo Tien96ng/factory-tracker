@@ -29,14 +29,13 @@ namespace Factory.Controllers
     [HttpPost]
     public ActionResult Create(Machine machine, int engineerId)
     {
-      bool matches = _db.EngineerMachine.Any(x => x.EngineerId== engineerId && x.MachineId == machine.MachineId);
-      if(!matches)
-      {
+      bool matches = _db.EngineerMachine.Any(x => x.EngineerId == engineerId && x.MachineId == machine.MachineId);
+      if(!matches) {
         _db.Machines.Add(machine);
         _db.SaveChanges();
-        if (engineerId != 0)
+        if(engineerId != 0)
         {
-          _db.EngineerMachine.Add(new EngineerMachine() { EngineerId = engineerId, MachineId = machine.MachineId });
+          _db.EngineerMachine.Add(new EngineerMachine() { MachineId = machine.MachineId, EngineerId = engineerId});
         }
         _db.SaveChanges();
       }
@@ -71,7 +70,7 @@ namespace Factory.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-    public ActionResult Delete (int machineId)
+    public ActionResult Delete(int machineId)
     {
       var thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == machineId);
       return View(thisMachine);
@@ -92,7 +91,7 @@ namespace Factory.Controllers
     }
 
     [HttpPost]
-    public ActionResult AddDoctor(Machine machine, int engineerId)
+    public ActionResult AddEngineer(Machine machine, int engineerId)
     {
       bool matches = _db.EngineerMachine.Any(x => x.EngineerId == engineerId && x.MachineId == machine.MachineId);
       if(!matches)
@@ -107,7 +106,7 @@ namespace Factory.Controllers
     }
 
     [HttpPost]
-    public ActionResult DeleteDoctor(int joinId)
+    public ActionResult DeleteEngineer(int joinId)
     {
       var joinEntry = _db.EngineerMachine.FirstOrDefault(entry => entry.EngineerMachineId == joinId);
       _db.Remove(joinEntry);
