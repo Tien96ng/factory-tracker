@@ -88,7 +88,7 @@ namespace Factory.Controllers
       return RedirectToAction("Index");
     }
 
-    public ActionResult AddPatient(int engineerId)
+    public ActionResult AddMachine(int engineerId)
     {
       var thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == engineerId);
       ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
@@ -96,7 +96,7 @@ namespace Factory.Controllers
     }
 
     [HttpPost]
-    public ActionResult AddPatient(Engineer engineer, int machineId)
+    public ActionResult AddMachine(Engineer engineer, int machineId)
     {
       bool matches = _db.EngineerMachine.Any(x => x.EngineerId == engineer.EngineerId && x.MachineId == machineId);
       if(!matches)
