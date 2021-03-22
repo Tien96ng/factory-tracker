@@ -4,7 +4,7 @@
 @model Factory.Models.Machine
 @using Factory.Models
 
-<h1> Edit Machine License: @Model.Name </h1>
+<h1> Edit Machine: @Model.Name </h1>
 
 @using (Html.BeginForm())
 {
@@ -22,4 +22,4 @@
   <input type="submit" value="Save" />
 }
 
-<p>@Html.ActionLink("Back - Show all Machine License(s)", "Index")</p>
+<p>@Html.ActionLink("Back - Show all Machine(s)", "Index")</p>

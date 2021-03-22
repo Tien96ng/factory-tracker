@@ -5,7 +5,7 @@
 @using Factory.Models
 
 <h1> Add an Engineer </h1>
-<h4> Adding new License for @Html.DisplayFor(model => model.Name) </h4>
+<h4> Adding new Engineer for @Html.DisplayFor(model => model.Name) </h4>
 
 @using (Html.BeginForm())
 {
@@ -17,5 +17,5 @@
   <input type="submit" value="Add" />
 }
 
-<p> @Html.ActionLink($"Back - Machine License: {@Model.Name}", "Details", new { machineId = Model.MachineId })</p>
+<p> @Html.ActionLink($"Back - Machine: {@Model.Name}", "Details", new { machineId = Model.MachineId })</p>
 <p> @Html.ActionLink("Back - Show all Engineers", "Index")</p>

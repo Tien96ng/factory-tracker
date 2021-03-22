@@ -4,7 +4,7 @@
 @model Factory.Models.Machine
 
 
-<h1> Add a new Machine License </h1>
+<h1> Add a new Machine </h1>
 @using (Html.BeginForm())
 {
   @Html.LabelFor(model => model.Name)
@@ -16,8 +16,8 @@
   @Html.Label("Select an Engineer")
   @Html.DropDownList("EngineerId", null, string.Empty)
 
-  <input type="submit" value="Add a Machine License" />
+  <input type="submit" value="Add a Machine" />
 }
 
-<p>@Html.ActionLink("Back - Show all Machines", "Index")</p>
+<p>@Html.ActionLink("Back - Show all Machine(s)", "Index")</p>
 <p>@Html.ActionLink("Back - Homepage", "Index", "Home")</p>
