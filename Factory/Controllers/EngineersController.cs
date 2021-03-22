@@ -111,7 +111,7 @@ namespace Factory.Controllers
     }
 
     [HttpPost]
-    public ActionResult DeletePatient(int joinId)
+    public ActionResult DeleteMachine(int joinId)
     {
       var joinEntry = _db.EngineerMachine.FirstOrDefault(entry => entry.EngineerMachineId == joinId);
       _db.Remove(joinEntry);
